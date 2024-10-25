@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = 5003;
 const axios = require('axios');
 
 app.use(cors());
@@ -13,7 +13,7 @@ app.post('/api/chatbot', async (req, res) => {
 
   try {
     // Realiza la petición al servidor Flask en el puerto 5001
-    const response = await axios.post('https://koryfiasistant-production.up.railway.app', { pregunta });
+    const response = await axios.post('http://localhost:5002/api/chatbot', { pregunta });
     const respuestaChatbot = response.data.respuesta;
 
     res.json({ respuesta: respuestaChatbot });
