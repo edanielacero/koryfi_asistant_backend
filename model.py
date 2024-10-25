@@ -127,4 +127,4 @@ def chatbot():
     return jsonify({"respuesta": respuesta})
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)  # Servidor Flask corriendo en el puerto 5001
+    app.run(debug=True, port=5002)  # Servidor Flask corriendo en el puerto 5001
