@@ -13,7 +13,7 @@ app.post('/api/chatbot', async (req, res) => {
 
   try {
     // Realiza la petición al servidor Flask en el puerto 5001
-    const response = await axios.post('http://localhost:5002/api/chatbot', { pregunta });
+    const response = await axios.post('https://flaskflaskflask/api/chatbot', { pregunta });
     const respuestaChatbot = response.data.respuesta;
 
     res.json({ respuesta: respuestaChatbot });
