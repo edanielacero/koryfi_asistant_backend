@@ -1,10 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 5003;
+const port = process.env.PORT || 5003;
 const axios = require('axios');
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://koryfiasistant-production.up.railway.app',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
+
+app.options('*', cors());
+
 app.use(express.json());
 
 // Ruta para manejar las preguntas del chatbot
