@@ -12,7 +12,21 @@ app.use(cors({
 
 app.use(express.json());
 
+// Ruta para manejar las preguntas del chatbot
+app.post('/api/chatbot', async (req, res) => {
+  const { pregunta } = req.body;
 
+  try {
+    // Realiza la petición al servidor Flask en el puerto 5001
+    const response = await axios.post('https://model3-production.up.railway.app/api/chatbot', { pregunta }, { timeout: 5000 });
+    const respuestaChatbot = response.data.respuesta;
+
+    res.json({ respuesta: respuestaChatbot });
+  } catch (error) {
+    console.error('Error al conectar con el chatbot:', error);
+    res.status(500).json({ mensaje: 'Error al conectar con el chatbot.' });
+  }
+});
 
 // Ruta para mostrar algo en el navegador
 app.get('/', (req, res) => {
